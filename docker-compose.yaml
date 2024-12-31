@@ -1,0 +1,9 @@
+services:
+  debian:
+    container_name: perfait-debian
+    image: perfait-debian
+    build:
+      context: .
+      dockerfile: ./Dockerfile.debian
+    volumes:
+      - .:/home/perfait/
