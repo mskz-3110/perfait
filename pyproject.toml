@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "perfait"
-version = "0.0.1"
+version = "0.1.0"
 authors = [{name = "mskz-3110", email = "mskz.saito@gmail.com"}]
 description = "Performance survey comparison tool"
 readme = "README.md"
@@ -14,10 +14,12 @@ classifiers = [
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
 ]
-dependencies = []
+dependencies = [
+  "graspgraph",
+]
 
-#[project.scripts]
-#perfait = "perfait.cli:main"
+[project.scripts]
+perfait = "perfait.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/mskz-3110/perfait"

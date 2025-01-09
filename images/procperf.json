@@ -1,56 +1,65 @@
-[
-  [
-    "",
-    "Internal",
-    "External",
-    "Total"
-  ],
-  [
-    "java<br>(openjdk 17.0.13)",
-    2,
-    39,
-    42
-  ],
-  [
-    "go<br>(1.19.8)",
-    16,
-    234,
-    250
-  ],
-  [
-    "csharp<br>(mcs 6.8.0.105)",
-    36,
-    17,
-    54
-  ],
-  [
-    "javascript<br>(node 18.19.0)",
-    70,
-    69,
-    139
-  ],
-  [
-    "cpp<br>(g++ 12)",
-    170,
-    11,
-    182
-  ],
-  [
-    "php<br>(8.2.26)",
-    377,
-    18,
-    395
-  ],
-  [
-    "python<br>(3.11.2)",
-    1154,
-    32,
-    1187
-  ],
-  [
-    "ruby<br>(3.1.2p20)",
-    3233,
-    615,
-    3849
+{
+  "Tick": {
+    "Dtick": 200,
+    "Format": "d"
+  },
+  "LayoutTitleText": "<b>[procperf]<br>Measurement of 100 million increments</b>",
+  "XTitleText": "Elapsed time(ms)",
+  "YTitleText": "Programming language",
+  "Array": [
+    [
+      "",
+      "Internal",
+      "External",
+      "Total"
+    ],
+    [
+      "java<br>(openjdk 17.0.13)",
+      2,
+      36,
+      39
+    ],
+    [
+      "go<br>(1.19.8)",
+      14,
+      221,
+      235
+    ],
+    [
+      "csharp<br>(mcs 6.8.0.105)",
+      37,
+      18,
+      56
+    ],
+    [
+      "javascript<br>(node 18.19.0)",
+      69,
+      86,
+      156
+    ],
+    [
+      "cpp<br>(g++ 12)",
+      167,
+      4,
+      172
+    ],
+    [
+      "php<br>(8.2.26)",
+      375,
+      298,
+      673
+    ],
+    [
+      "python<br>(3.11.2)",
+      1161,
+      67,
+      1228
+    ],
+    [
+      "ruby<br>(3.1.2p20)",
+      3251,
+      491,
+      3742
+    ]
   ]
-]
+}

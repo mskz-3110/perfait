@@ -77,7 +77,7 @@ def proglang_elapsed_times(args):
     elapsedTime = time.perf_counter() - startTime
     if 0 < len(stderr):
       sys.exit("""\033[40m\033[31m{}\033[0m""".format(stderr))
-    print(stdout, end = "")
+    print("""{}{:.6f}""".format(stdout, elapsedTime))
     internalElapsedTime = float(stdout)
     elapsedTimes.append([internalElapsedTime, elapsedTime - internalElapsedTime, elapsedTime])
     gc.enable()
@@ -87,14 +87,20 @@ def proglang_elapsed_times(args):
 os.chdir(os.path.join(os.path.dirname(__file__), "procperf"))
 for proglang in procperfConfig.keys():
   proglang_prepare(proglang)
-pivotTableArray = []
+perfait = {
+  "Tick": {"Dtick": 200, "Format": "d"},
+  "LayoutTitleText": "<b>[procperf]<br>Measurement of 100 million increments</b>",
+  "XTitleText": "Elapsed time(ms)",
+  "YTitleText": "Programming language",
+  "Array": [],
+}
 for proglang in procperfConfig.keys():
-  pivotTable = proglang_elapsed_times(procperfConfig[proglang])
-  pivotTable.insert(0, """{}<br>({})""".format(proglang, proglang_version(proglang)))
-  pivotTableArray.append(pivotTable)
-pivotTableArray.sort(key = lambda performance: performance[1])
-pivotTableArray.insert(0 , ["", "Internal", "External", "Total"])
+  elapsedTimes = proglang_elapsed_times(procperfConfig[proglang])
+  elapsedTimes.insert(0, """{}<br>({})""".format(proglang, proglang_version(proglang)))
+  perfait["Array"].append(elapsedTimes)
+perfait["Array"].sort(key = lambda performance: performance[1])
+perfait["Array"].insert(0 , ["", "Internal", "External", "Total"])
 filePath = "../../images/procperf.json"
 os.makedirs(os.path.dirname(filePath), exist_ok = True)
 with open(filePath, "w", encoding = "utf-8", newline = "\n") as file:
-  json.dump(pivotTableArray, file, indent = 2)
+  json.dump(perfait, file, indent = 2)
