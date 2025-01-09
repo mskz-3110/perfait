@@ -5,6 +5,6 @@ static void on_process(){
 }
 
 int main(int argc, const char* argv[]){
-  perfait::Perfait::measure(on_process);
+  printf("%.6f\n", perfait::Perfait::measure(on_process));
   return EXIT_SUCCESS;
 }

@@ -26,7 +26,7 @@ class Perfait {
   static public function measure($onProcess){
     $stopwatch = new Stopwatch();
     $onProcess();
-    printf("%.6f\n", $stopwatch->stop());
+    return $stopwatch->stop();
   }
 }
 ?>

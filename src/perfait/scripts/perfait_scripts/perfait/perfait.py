@@ -19,4 +19,4 @@ class Perfait:
   def measure(cls, onProcess):
     stopwatch = Stopwatch()
     onProcess()
-    print("""{:.6f}""".format(stopwatch.stop()))
+    return stopwatch.stop()

@@ -33,10 +33,10 @@ namespace perfait {
     public:
       typedef void (*ProcessEvent)();
 
-      static void measure(ProcessEvent onProcess){
+      static double measure(ProcessEvent onProcess){
         Stopwatch stopwatch = Stopwatch();
         onProcess();
-        printf("%.6f\n", stopwatch.stop());
+        return stopwatch.stop();
       }
   };
 }

@@ -21,7 +21,7 @@ module Perfait
     def self.measure(&onProcess)
       stopwatch = Stopwatch.new
       onProcess.call()
-      puts(sprintf("%.6f", stopwatch.stop()))
+      stopwatch.stop()
     end
   end
 end

@@ -7,6 +7,6 @@ class Procperf {
   }
 
   static public void main(String[] args){
-    Perfait.measure(Procperf::on_process);
+    System.out.printf("%.6f\n", Perfait.measure(Procperf::on_process));
   }
 }

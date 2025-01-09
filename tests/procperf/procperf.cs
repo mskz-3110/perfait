@@ -4,6 +4,6 @@ public class Procperf {
   }
 
   static void Main(string[] argv){
-    perfait.Perfait.Measure(OnProcess);
+      Console.WriteLine($"{perfait.Perfait.Measure(OnProcess):F6}");
   }
 }

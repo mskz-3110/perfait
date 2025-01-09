@@ -23,7 +23,7 @@ class Perfait {
   static measure(onProcess){
     var stopwatch = new Stopwatch();
     onProcess();
-    console.log("%f", stopwatch.stop());
+    return stopwatch.stop();
   }
 }
 

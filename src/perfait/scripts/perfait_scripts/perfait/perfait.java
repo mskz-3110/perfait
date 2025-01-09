@@ -26,9 +26,9 @@ class Perfait {
     void OnProcess();
   }
 
-  static public void measure(ICallback callback){
+  static public double measure(ICallback callback){
     var stopwatch = new Stopwatch();
     callback.OnProcess();
-    System.out.printf("%.6f\n", stopwatch.stop());
+    return stopwatch.stop();
   }
 }

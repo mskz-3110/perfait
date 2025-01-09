@@ -2,6 +2,7 @@ package main
 
 import (
   "perfait"
+  "fmt"
 )
 
 func on_process(){
@@ -9,5 +10,5 @@ func on_process(){
 }
 
 func main(){
-  perfait.PerfaitMeasure(on_process)
+  fmt.Printf("%.6f\n", perfait.PerfaitMeasure(on_process))
 }

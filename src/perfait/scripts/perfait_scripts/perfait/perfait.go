@@ -2,7 +2,6 @@ package perfait
 
 import (
   "time"
-  "fmt"
 )
 
 func __get_time()(float64){
@@ -30,8 +29,8 @@ func (stopwatch *Stopwatch)Stop()(float64){
 
 type PerfaitMeasureOnProcess func()
 
-func PerfaitMeasure(onProcess PerfaitMeasureOnProcess){
+func PerfaitMeasure(onProcess PerfaitMeasureOnProcess)(float64){
   stopwatch := StopwatchNew()
   onProcess()
-  fmt.Printf("%.6f\n", stopwatch.Stop())
+  return stopwatch.Stop()
 }
