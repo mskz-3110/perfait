@@ -13,10 +13,3 @@ class Stopwatch:
 
   def stop(self):
     return Stopwatch.__get_time() - self.__StartTime
-
-class Perfait:
-  @classmethod
-  def measure(cls, onProcess):
-    stopwatch = Stopwatch()
-    onProcess()
-    return stopwatch.stop()

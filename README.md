@@ -7,13 +7,20 @@ Visualization of multiple measurement results
 ### Measurement of 100 million increments
 ![](./images/procperf.png)
 
+### Performance comparison of binary serializers
+![](./images/serdesperf.png)
+
 ## What is possible
 ### procperf
 1. Measuring execution time for each programming language
 2. Image output of data in pivot table format
 
+### serdesperf
+1. Binary serializer performance measurement
+2. Image output of data in pivot table format
+
 ## Reason for development
-- I wanted to visualize the differences in processing speed of each programming language
+- I want to visualize the differences in processing speed of each programming language and performance of binary serializers
 
 ## Versions
 
@@ -92,6 +99,26 @@ Visualization of multiple measurement results
       491,
       3742
     ]
+  ]
+}
+```
+
+### serdesperf
+![](./images/serdesperf.png)
+```json
+{
+  "Tick": {"Dtick": 1000, "Format": "d"},
+  "LayoutTitleText": "<b>[serdesperf]<br>Performance comparison of binary serializers</b>",
+  "XTitleText": "",
+  "YTitleText": "Binary serializer",
+  "Array": [
+    ["", "Ser(μs)", "Des(μs)", "Size(byte)"],
+    ["Protobuf<br>double[1]", 6, 8, 10],
+    ["Protobuf<br>double[1000]", 251, 215, 8003],
+    ["MessagePack<br>double[1]", 21, 3, 11],
+    ["MessagePack<br>double[1000]", 40, 85, 9004],
+    ["MemoryPack<br>double[1]", 7, 3, 13],
+    ["MemoryPack<br>double[1000]", 4, 1, 8005]
   ]
 }
 ```

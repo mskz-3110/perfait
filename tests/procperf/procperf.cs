@@ -1,9 +1,7 @@
 public class Procperf {
-  static void OnProcess(){
-    for (int i = 0; i < 100000000; ++i){}
-  }
-
   static void Main(string[] argv){
-      System.Console.WriteLine($"{perfait.Perfait.Measure(OnProcess):F6}");
+    var stopwatch = new Perfait.Stopwatch();
+    for (int i = 0; i < 100000000; ++i){}
+    System.Console.WriteLine($"{stopwatch.Stop():F6}");
   }
 }

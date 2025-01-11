@@ -4,10 +4,10 @@
 #include <stdio.h>
 #include <time.h>
 
-namespace perfait {
+namespace Perfait {
   class Stopwatch {
     private:
-      static double __get_time(){
+      static double __GetTime(){
         struct timespec ts;
         clock_gettime(CLOCK_REALTIME, &ts);
         return (double)ts.tv_sec + ((double)ts.tv_nsec / 1000000000);
@@ -17,26 +17,15 @@ namespace perfait {
 
     public:
       Stopwatch(){
-        start();
+        Start();
       }
 
-      void start(){
-        __StartTime = __get_time();
+      void Start(){
+        __StartTime = __GetTime();
       }
 
-      double stop(){
-        return __get_time() - __StartTime;
-      }
-  };
-
-  class Perfait {
-    public:
-      typedef void (*ProcessEvent)();
-
-      static double measure(ProcessEvent onProcess){
-        Stopwatch stopwatch = Stopwatch();
-        onProcess();
-        return stopwatch.stop();
+      double Stop(){
+        return __GetTime() - __StartTime;
       }
   };
 }

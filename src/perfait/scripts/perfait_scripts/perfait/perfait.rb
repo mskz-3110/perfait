@@ -16,12 +16,4 @@ module Perfait
       Stopwatch.__get_time() - @__StartTime
     end
   end
-
-  class Perfait
-    def self.measure(&onProcess)
-      stopwatch = Stopwatch.new
-      onProcess.call()
-      stopwatch.stop()
-    end
-  end
 end

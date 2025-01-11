@@ -1,0 +1,6 @@
+syntax = "proto3";
+package Serdesperf;
+
+message SerdesDoubleProtobuf {
+  repeated double Values = 1;
+}

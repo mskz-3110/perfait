@@ -20,15 +20,3 @@ class Stopwatch {
     return Stopwatch.__get_time() - this.__StartTime;
   }
 }
-
-class Perfait {
-  public interface ICallback {
-    void OnProcess();
-  }
-
-  static public double measure(ICallback callback){
-    var stopwatch = new Stopwatch();
-    callback.OnProcess();
-    return stopwatch.stop();
-  }
-}

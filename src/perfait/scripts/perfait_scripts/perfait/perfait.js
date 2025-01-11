@@ -19,15 +19,6 @@ class Stopwatch {
   }
 }
 
-class Perfait {
-  static measure(onProcess){
-    var stopwatch = new Stopwatch();
-    onProcess();
-    return stopwatch.stop();
-  }
-}
-
 module.exports = {
   Stopwatch: Stopwatch,
-  Perfait: Perfait,
 }

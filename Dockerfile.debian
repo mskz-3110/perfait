@@ -8,3 +8,8 @@ RUN apt install -y ruby-full
 RUN apt install -y php
 RUN apt install -y nodejs
 RUN apt install -y default-jdk
+RUN apt install -y libprotobuf-dev libprotoc-dev protobuf-compiler
+RUN apt install -y wget
+RUN wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && dpkg -i packages-microsoft-prod.deb && rm packages-microsoft-prod.deb
+RUN apt update
+RUN apt install -y dotnet-sdk-9.0

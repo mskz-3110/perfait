@@ -26,11 +26,3 @@ func (stopwatch *Stopwatch)Start(){
 func (stopwatch *Stopwatch)Stop()(float64){
   return __get_time() - stopwatch.__StartTime
 }
-
-type PerfaitMeasureOnProcess func()
-
-func PerfaitMeasure(onProcess PerfaitMeasureOnProcess)(float64){
-  stopwatch := StopwatchNew()
-  onProcess()
-  return stopwatch.Stop()
-}

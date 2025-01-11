@@ -1,16 +1,22 @@
 using System;
-using System.Diagnostics;
 
-namespace perfait {
-  public class Perfait {
-    public delegate void ProcessEvent();
+namespace Perfait {
+  public class Stopwatch {
+    private System.Diagnostics.Stopwatch m_Stopwatch;
 
-    static public double Measure(ProcessEvent onProcess){
-      var stopwatch = new Stopwatch();
-      stopwatch.Start();
-      onProcess();
-      stopwatch.Stop();
-      return stopwatch.Elapsed.TotalSeconds;
+    public Stopwatch(){
+      m_Stopwatch = new System.Diagnostics.Stopwatch();
+      Start();
+    }
+
+    public void Start(){
+      m_Stopwatch.Reset();
+      m_Stopwatch.Start();
+    }
+
+    public double Stop(){
+      m_Stopwatch.Stop();
+      return m_Stopwatch.Elapsed.TotalSeconds;
     }
   }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace perfait;
+namespace Perfait;
 
 class Stopwatch {
   static private function __get_time(){
@@ -19,14 +19,6 @@ class Stopwatch {
 
   public function stop(){
     return Stopwatch::__get_time() - $this->__StartTime;
-  }
-}
-
-class Perfait {
-  static public function measure($onProcess){
-    $stopwatch = new Stopwatch();
-    $onProcess();
-    return $stopwatch->stop();
   }
 }
 ?>
