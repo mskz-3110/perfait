@@ -1,10 +1,10 @@
 import os
 import sys
 import json
-import time
-import gc
 sys.path.append(os.path.dirname(__file__))
 from command import *
+sys.path.append(os.path.join(os.path.dirname(__file__), "../src/perfait/scripts/perfait_scripts"))
+from measure_command import *
 
 if "PERFAIT_PATH" not in os.environ:
   os.environ["PERFAIT_PATH"] = os.path.abspath(os.path.join(os.path.dirname(__file__), "../src/perfait/scripts/perfait_scripts/perfait"))
@@ -35,58 +35,39 @@ def proglang_prepare(proglang):
     case "javascript":
       os.environ["NODE_PATH"] = perfaitPath
 
+def versions(args):
+  return capture_command(args).stdout.rstrip().split()
+
 def proglang_version(proglang):
   match proglang:
     case "cpp":
       args = ["g++", "-dumpversion"]
-      return " ".join([args[0], capture_command(args).stdout.rstrip().split()[0]])
+      return " ".join([args[0], versions(args)[0]])
     case "python":
       args = ["python3", "-V"]
-      return capture_command(args).stdout.rstrip().split()[-1]
+      return versions(args)[-1]
     case "csharp":
       args = ["mcs", "--version"]
-      return " ".join([args[0], capture_command(args).stdout.rstrip().split()[-1]])
+      return " ".join([args[0], versions(args)[-1]])
     case "go":
       args = ["go", "version"]
-      return capture_command(args).stdout.rstrip().split()[2][2:]
+      return versions(args)[2][2:]
     case "ruby":
       args = ["ruby", "--version"]
-      return capture_command(args).stdout.rstrip().split()[1]
+      return versions(args)[1]
     case "php":
       args = ["php", "--version"]
-      return capture_command(args).stdout.rstrip().split()[1]
+      return versions(args)[1]
     case "javascript":
       args = ["node", "-v"]
-      return " ".join([args[0], capture_command(args).stdout.rstrip()[1:]])
+      return " ".join([args[0], versions(args)[0][1:]])
     case "java":
       args = ["java", "--version"]
-      versions = capture_command(args).stdout.rstrip().split()
-      return " ".join([versions[0], versions[1]])
+      return " ".join(versions(args)[0:2])
     case _:
       return "?"
 
-def proglang_elapsed_times(args):
-  elapsedTimes = []
-  for _ in range(5):
-    gc.collect()
-    gc.disable()
-    startTime = time.perf_counter()
-    result = capture_command(args)
-    stdout = result.stdout
-    stderr = result.stderr
-    elapsedTime = time.perf_counter() - startTime
-    if 0 < len(stderr):
-      sys.exit("""\033[40m\033[31m{}\033[0m""".format(stderr))
-    print("""{}{:.6f}""".format(stdout, elapsedTime))
-    internalElapsedTime = float(stdout)
-    elapsedTimes.append([internalElapsedTime, elapsedTime - internalElapsedTime, elapsedTime])
-    gc.enable()
-  elapsedTimes.sort()
-  return list(map(lambda elapsedTime: int(elapsedTime * 1000), elapsedTimes[int(len(elapsedTimes) / 2)]))
-
 os.chdir(os.path.join(os.path.dirname(__file__), "procperf"))
-for proglang in procperfConfig.keys():
-  proglang_prepare(proglang)
 perfait = {
   "Tick": {"Dtick": 200, "Format": "d"},
   "LayoutTitleText": "<b>[procperf]<br>Measurement of 100 million increments</b>",
@@ -95,10 +76,14 @@ perfait = {
   "Array": [],
 }
 for proglang in procperfConfig.keys():
-  elapsedTimes = proglang_elapsed_times(procperfConfig[proglang])
-  elapsedTimes.insert(0, """{}<br>({})""".format(proglang, proglang_version(proglang)))
-  perfait["Array"].append(elapsedTimes)
-perfait["Array"].sort(key = lambda performance: performance[1])
+  proglang_prepare(proglang)
+  measure = measure_command(5, procperfConfig[proglang])
+  if 0 < len(measure["stderr"]):
+    sys.exit("""\033[40m\033[31m{}\033[0m""".format(measure["stderr"]))
+  internalElapsedTime = int(measure["internalElapsedTime"] * 1000)
+  externalElapsedTime = int(measure["externalElapsedTime"] * 1000)
+  perfait["Array"].append(["""{}<br>({})""".format(proglang, proglang_version(proglang)), internalElapsedTime, externalElapsedTime, internalElapsedTime + externalElapsedTime])
+perfait["Array"].sort(key = lambda value: value[1])
 perfait["Array"].insert(0 , ["", "Internal", "External", "Total"])
 filePath = "../../images/procperf.json"
 os.makedirs(os.path.dirname(filePath), exist_ok = True)

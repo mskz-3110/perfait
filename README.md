@@ -53,51 +53,51 @@ Visualization of multiple measurement results
     ],
     [
       "java<br>(openjdk 17.0.13)",
-      2,
-      36,
-      39
+      3,
+      29,
+      32
     ],
     [
       "go<br>(1.19.8)",
-      14,
-      221,
-      235
+      12,
+      193,
+      205
     ],
     [
       "csharp<br>(mcs 6.8.0.105)",
-      37,
-      18,
-      56
+      42,
+      26,
+      68
     ],
     [
       "javascript<br>(node 18.19.0)",
       69,
-      86,
-      156
+      43,
+      112
     ],
     [
       "cpp<br>(g++ 12)",
-      167,
-      4,
-      172
+      166,
+      5,
+      171
     ],
     [
       "php<br>(8.2.26)",
-      375,
-      298,
-      673
+      373,
+      17,
+      390
     ],
     [
       "python<br>(3.11.2)",
-      1161,
-      67,
-      1228
+      2023,
+      350,
+      2373
     ],
     [
       "ruby<br>(3.1.2p20)",
-      3251,
-      491,
-      3742
+      3259,
+      152,
+      3411
     ]
   ]
 }
@@ -107,18 +107,21 @@ Visualization of multiple measurement results
 ![](./images/serdesperf.png)
 ```json
 {
-  "Tick": {"Dtick": 1000, "Format": "d"},
+  "Tick": {"Dtick": 2000, "Format": "d"},
   "LayoutTitleText": "<b>[serdesperf]<br>Performance comparison of binary serializers</b>",
   "XTitleText": "",
   "YTitleText": "Binary serializer",
   "Array": [
     ["", "Ser(μs)", "Des(μs)", "Size(byte)"],
-    ["Protobuf<br>double[1]", 6, 8, 10],
-    ["Protobuf<br>double[1000]", 251, 215, 8003],
-    ["MessagePack<br>double[1]", 21, 3, 11],
-    ["MessagePack<br>double[1000]", 40, 85, 9004],
-    ["MemoryPack<br>double[1]", 7, 3, 13],
-    ["MemoryPack<br>double[1000]", 4, 1, 8005]
+    ["Protobuf<br>double[1] first", 2560, 2115, 10],
+    ["Protobuf<br>double[1]", 12, 4, 10],
+    ["Protobuf<br>double[1000]", 246, 221, 8003],
+    ["MessagePack<br>double[1] first", 49750, 1478, 11],
+    ["MessagePack<br>double[1]", 25, 3, 11],
+    ["MessagePack<br>double[1000]", 66, 95, 9004],
+    ["MemoryPack<br>double[1] first", 2554, 1238, 13],
+    ["MemoryPack<br>double[1]", 9, 4, 13],
+    ["MemoryPack<br>double[1000]", 3, 2, 8005]
   ]
 }
 ```
@@ -133,6 +136,7 @@ init
 ```
 `perfait init`
 ```
+perfait_scripts\measure_command.py is done.
 perfait_scripts\perfait\go.mod is done.
 perfait_scripts\perfait\perfait.cs is done.
 perfait_scripts\perfait\perfait.go is done.

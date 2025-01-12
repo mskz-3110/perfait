@@ -1,15 +1,18 @@
 {
-  "Tick": {"Dtick": 1000, "Format": "d"},
+  "Tick": {"Dtick": 2000, "Format": "d"},
   "LayoutTitleText": "<b>[serdesperf]<br>Performance comparison of binary serializers</b>",
   "XTitleText": "",
   "YTitleText": "Binary serializer",
   "Array": [
     ["", "Ser(μs)", "Des(μs)", "Size(byte)"],
-    ["Protobuf<br>double[1]", 6, 8, 10],
-    ["Protobuf<br>double[1000]", 251, 215, 8003],
-    ["MessagePack<br>double[1]", 21, 3, 11],
-    ["MessagePack<br>double[1000]", 40, 85, 9004],
-    ["MemoryPack<br>double[1]", 7, 3, 13],
-    ["MemoryPack<br>double[1000]", 4, 1, 8005]
+    ["Protobuf<br>double[1] first", 2560, 2115, 10],
+    ["Protobuf<br>double[1]", 12, 4, 10],
+    ["Protobuf<br>double[1000]", 246, 221, 8003],
+    ["MessagePack<br>double[1] first", 49750, 1478, 11],
+    ["MessagePack<br>double[1]", 25, 3, 11],
+    ["MessagePack<br>double[1000]", 66, 95, 9004],
+    ["MemoryPack<br>double[1] first", 2554, 1238, 13],
+    ["MemoryPack<br>double[1]", 9, 4, 13],
+    ["MemoryPack<br>double[1000]", 3, 2, 8005]
   ]
 }
