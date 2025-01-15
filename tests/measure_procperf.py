@@ -9,7 +9,7 @@ from measure_command import *
 if "PERFAIT_PATH" not in os.environ:
   os.environ["PERFAIT_PATH"] = os.path.abspath(os.path.join(os.path.dirname(__file__), "../src/perfait/scripts/perfait_scripts/perfait"))
 
-procperfConfig = dict(
+procperfMeasureCommands = dict(
   cpp = ["./procperf_cpp"],
   python = ["python3", "./procperf.py"],
   csharp = ["mono", "./procperf_cs"],
@@ -75,9 +75,9 @@ perfait = {
   "YTitleText": "Programming language",
   "Array": [],
 }
-for proglang in procperfConfig.keys():
+for proglang in procperfMeasureCommands.keys():
   proglang_prepare(proglang)
-  measure = measure_command(5, procperfConfig[proglang])
+  measure = measure_command(5, procperfMeasureCommands[proglang])
   if 0 < len(measure["stderr"]):
     sys.exit("""\033[40m\033[31m{}\033[0m""".format(measure["stderr"]))
   internalElapsedTime = int(measure["internalElapsedTime"] * 1000)
