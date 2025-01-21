@@ -26,7 +26,7 @@ Visualization of multiple measurement results
 
 |Version|Summary|
 |:--|:--|
-|0.1.0|Release perfait|
+|0.1.1|Release perfait|
 
 ## Installation
 ### [perfait](https://pypi.org/project/perfait/)

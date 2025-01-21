@@ -13,11 +13,11 @@ class Program {
     try{
       var stopwatch = new Perfait.Stopwatch();
       var serializedBytes = onSerialize(serializeData);
-      serializedTime = stopwatch.Stop();
+      serializedTime = stopwatch.ElapsedTime();
       serializedSize = serializedBytes.Length;
-      stopwatch.Start();
+      stopwatch.Reset();
       onDeserialize(serializedBytes);
-      deserializedTime = stopwatch.Stop();
+      deserializedTime = stopwatch.ElapsedTime();
     }catch(Exception e){
       Console.WriteLine(e.ToString());
       serializedTime = deserializedTime = 0;

@@ -6,26 +6,27 @@
 
 namespace Perfait {
   class Stopwatch {
-    private:
-      static double __GetTime(){
+    public:
+      static double GetTime(){
         struct timespec ts;
         clock_gettime(CLOCK_REALTIME, &ts);
         return (double)ts.tv_sec + ((double)ts.tv_nsec / 1000000000);
       }
 
+    private:
       double __StartTime;
 
     public:
       Stopwatch(){
-        Start();
+        Reset();
       }
 
-      void Start(){
-        __StartTime = __GetTime();
+      void Reset(){
+        __StartTime = GetTime();
       }
 
-      double Stop(){
-        return __GetTime() - __StartTime;
+      double ElapsedTime(){
+        return GetTime() - __StartTime;
       }
   };
 }

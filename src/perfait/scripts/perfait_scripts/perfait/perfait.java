@@ -1,7 +1,7 @@
 package perfait;
 
 class Stopwatch {
-  static public double __get_time(){
+  static public double get_time(){
     var nanoTime = (double)System.nanoTime();
     return nanoTime / 1000000000 + ((nanoTime % 1000000000) / 1000000000);
   }
@@ -9,14 +9,14 @@ class Stopwatch {
   private double __StartTime;
 
   public Stopwatch(){
-    this.start();
+    this.reset();
   }
 
-  public void start(){
-    this.__StartTime = Stopwatch.__get_time();
+  public void reset(){
+    this.__StartTime = Stopwatch.get_time();
   }
 
-  public double stop(){
-    return Stopwatch.__get_time() - this.__StartTime;
+  public double elapsed_time(){
+    return Stopwatch.get_time() - this.__StartTime;
   }
 }

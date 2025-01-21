@@ -5,4 +5,5 @@ i = 0
 while i < 100000000 do
   i = i + 1
 end
-puts(sprintf("%.6f", stopwatch.stop()))
+elapsedTime = stopwatch.elapsed_time()
+puts(sprintf("%.6f", elapsedTime))

@@ -2,21 +2,23 @@ using System;
 
 namespace Perfait {
   public class Stopwatch {
-    private System.Diagnostics.Stopwatch m_Stopwatch;
+    static public double GetTime(){
+      DateTime nowTime = DateTime.UtcNow;
+      return new DateTimeOffset(nowTime).ToUnixTimeSeconds() + (double)nowTime.Millisecond / 1000;
+    }
+
+    private double m_StartTime;
 
     public Stopwatch(){
-      m_Stopwatch = new System.Diagnostics.Stopwatch();
-      Start();
+      Reset();
     }
 
-    public void Start(){
-      m_Stopwatch.Reset();
-      m_Stopwatch.Start();
+    public void Reset(){
+      m_StartTime = GetTime();
     }
 
-    public double Stop(){
-      m_Stopwatch.Stop();
-      return m_Stopwatch.Elapsed.TotalSeconds;
+    public double ElapsedTime(){
+      return GetTime() - m_StartTime;
     }
   }
 }

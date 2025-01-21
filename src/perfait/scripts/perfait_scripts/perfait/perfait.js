@@ -1,5 +1,5 @@
 class Stopwatch {
-  static #__get_time(){
+  static get_time(){
     var nowTime = (new Date()).getTime();
     return nowTime / 1000 + ((nowTime % 1000) / 1000);
   }
@@ -7,15 +7,15 @@ class Stopwatch {
   #__StartTime;
 
   constructor(){
-    this.start();
+    this.reset();
   }
 
-  start(){
-    this.#__StartTime = Stopwatch.#__get_time();
+  reset(){
+    this.#__StartTime = Stopwatch.get_time();
   }
 
-  stop(){
-    return Stopwatch.#__get_time() - this.#__StartTime;
+  elapsed_time(){
+    return Stopwatch.get_time() - this.#__StartTime;
   }
 }
 
